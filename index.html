@@ -19,50 +19,58 @@
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            font-family: 'Tajawal', sans-serif;
-            color: var(--text-light);
+            margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            font-family: 'Tajawal', sans-serif; color: var(--text-light);
         }
 
         .container { width: 90%; max-width: 420px; text-align: center; }
 
-        h1 { 
-            color: var(--gold); margin-bottom: 30px; font-weight: 900;
-            text-shadow: 0 0 15px var(--gold-glow); font-size: 26px;
+        h1 { color: var(--gold); margin-bottom: 20px; font-weight: 900; font-size: 24px; }
+
+        .social-box {
+            padding: 15px; border-radius: 15px; margin-bottom: 20px;
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+            text-decoration: none; font-weight: bold; color: white;
         }
+        .wa-box { background-color: #25D366; }
+        .tg-box { background-color: #0088cc; }
 
         .option-card {
+            position: relative; overflow: hidden;
             background: var(--card-bg); backdrop-filter: blur(10px);
-            padding: 30px 20px; border-radius: 25px; margin-bottom: 25px;
+            border-radius: 25px; margin-bottom: 20px;
             cursor: pointer; transition: all 0.4s ease;
-            display: flex; flex-direction: column; align-items: center; gap: 15px;
-            position: relative; border: 2px solid rgba(255,255,255,0.1);
+            display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px;
+            border: 2px solid rgba(255,255,255,0.1);
+            aspect-ratio: 1 / 1;
+            padding: 20px;
         }
 
-        .card-tg { border-color: rgba(255, 215, 0, 0.3); }
-        .card-tg:hover { border-color: var(--gold); box-shadow: 0 0 20px var(--gold-glow); }
+        .card-camera { border-color: rgba(255, 215, 0, 0.3); }
+        .card-camera:hover { border-color: var(--gold); box-shadow: 0 0 20px var(--gold-glow); }
         
-        .card-wa { border-color: rgba(255, 20, 147, 0.3); }
-        .card-wa:hover { border-color: var(--neon-pink); box-shadow: 0 0 20px var(--pink-glow); }
+        .card-videos { border-color: rgba(255, 20, 147, 0.3); }
+        .card-videos:hover { border-color: var(--neon-pink); box-shadow: 0 0 20px var(--pink-glow); }
 
-        .option-card h2 { margin: 0; font-size: 21px; color: var(--text-light); font-weight: 700; }
-        .price { font-size: 28px; font-weight: 900; }
+        .card-bg-media {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; z-index: 0; opacity: 0.4;
+        }
+
+        .card-content { position: relative; z-index: 1; width: 100%; }
+
+        .option-card h2 { margin: 0; font-size: 20px; color: var(--text-light); font-weight: 700; }
+        .price { font-size: 24px; font-weight: 900; margin-top: 5px; }
         .tg-text { color: var(--gold); }
         .wa-text { color: var(--neon-pink); }
-        .icon-box { font-size: 45px; margin-bottom: 5px; }
-
-        #code-section { display: none; background: var(--card-bg); backdrop-filter: blur(15px); padding: 30px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.1); }
-        .alert-box { background: rgba(255, 215, 0, 0.1); color: var(--gold); padding: 15px; border-radius: 15px; border: 1px solid rgba(255, 215, 0, 0.3); font-size: 14px; margin-bottom: 20px; }
-        .btn { width: 100%; padding: 18px; border-radius: 15px; border: none; font-size: 18px; font-weight: bold; color: white; cursor: pointer; transition: 0.3s; margin-bottom: 15px; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .icon-box { font-size: 35px; margin-bottom: 5px; }
+        
+        #alert-section, #code-section { display: none; background: var(--card-bg); backdrop-filter: blur(15px); padding: 30px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.1); }
+        .btn { width: 100%; padding: 15px; border-radius: 15px; border: none; font-size: 18px; font-weight: bold; color: white; cursor: pointer; margin-bottom: 15px; }
         .btn-wa { background: #25D366; }
         .btn-submit { background: linear-gradient(45deg, var(--neon-pink), #ff69b4); }
-        input { width: 100%; padding: 18px; border-radius: 15px; border: 2px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: var(--gold); text-align: center; font-size: 20px; font-weight: 900; margin-bottom: 20px; box-sizing: border-box; }
+        input { width: 100%; padding: 15px; border-radius: 15px; border: 2px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: var(--gold); text-align: center; font-size: 18px; margin-bottom: 15px; box-sizing: border-box; }
         .back-btn { background: none; border: none; color: rgba(255,255,255,0.5); font-weight: bold; cursor: pointer; font-size: 16px; }
     </style>
 </head>
@@ -72,70 +80,93 @@
         <div id="selection-section">
             <h1>أهلاً بك في عالم الدلع مع نورا 👑</h1>
 
-            <div class="option-card card-tg" onclick="goToTelegram()">
-                <i class="fa-solid fa-crown icon-box tg-text"></i>
-                <h2>VIP<br>3 مكالمات كاميرا مع نورا</h2>
-                <div class="price tg-text">250 جنيهاً</div>
+            <a href="https://wa.me/201203487990" class="social-box wa-box">
+                <i class="fa-brands fa-whatsapp"></i> تواصل معي: 01203487990
+            </a>
+
+            <div class="option-card card-camera" onclick="goToTelegram()">
+                <video autoplay muted loop playsinline class="card-bg-media">
+                    <source src="https://files.catbox.moe/xuq0qn.mp4" type="video/mp4">
+                </video>
+                <div class="card-content">
+                    <i class="fa-solid fa-crown icon-box tg-text"></i>
+                    <h2 class="tg-text">VIP: 3 مكالمات كاميرا</h2>
+                    <div class="price tg-text">250 جنيهاً</div>
+                </div>
             </div>
 
-            <div class="option-card card-wa" onclick="showCodeSection()">
-                <i class="fa-solid fa-gem icon-box wa-text"></i>
-                <h2>11 فيديو حصري لنورا</h2>
-                <div class="price wa-text">75 جنيهاً</div>
+            <div class="option-card card-videos" onclick="showAlertSection()">
+                <img src="https://i.ibb.co/dJVX2GmY/IMG.jpg" alt="نورا" class="card-bg-media">
+                <div class="card-content">
+                    <h2 class="wa-text" style="margin-bottom: 5px;">12 فيديو حصري لنورا</h2>
+                    <div class="price wa-text">75 جنيهاً</div>
+                </div>
             </div>
+
+            <a href="https://t.me/+q09P_4XEXUQwZWY0" class="social-box tg-box">
+                <i class="fa-brands fa-telegram"></i> رابط القناة العامة للمتابعة
+            </a>
+        </div>
+
+        <div id="alert-section">
+            <h2 style="color: var(--neon-pink);">خطوات التشغيل ⚠️</h2>
+            <p style="font-size: 16px; margin-bottom: 20px; line-height: 1.6;">
+                1. اضغط "إرسال الواتساب" وحول المبلغ (75 جنيه).<br>
+                2. أرسل سكرين التحويل واحصل على "الكود".<br>
+                3. ارجع لهذه الصفحة وأدخل الكود لفتح الفيديوهات.
+            </p>
+            <button class="btn btn-wa" onclick="goToWhatsApp()">إرسال الواتساب</button>
+            <button class="btn btn-submit" onclick="showCodeSection()">لدي الكود، أريد إدخاله</button>
+            <button class="back-btn" onclick="goBackMain()">الرجوع للقائمة</button>
         </div>
 
         <div id="code-section">
-            <h2 style="color: white; margin-bottom: 20px;">الدخول الخاص 🔒</h2>
-            <div class="alert-box">
-                <i class="fa-solid fa-triangle-exclamation"></i> 
-                تنبيه هام: اطلب الكود من الواتساب، حوّل الـ 75ج، ثم عُد لإدخال الكود.
-            </div>
-
-            <button class="btn btn-wa" onclick="goToWhatsApp()">
-                <i class="fa-brands fa-whatsapp"></i> طلب الكود من الواتساب
-            </button>
-
-            <div style="margin: 20px 0 10px; color: rgba(255,255,255,0.7);">أدخل الكود هنا:</div>
+            <h2 style="color: white; margin-bottom: 20px;">أدخل الكود الخاص بك 🔒</h2>
             <input type="text" id="activationCode" placeholder="NORA---">
-            
             <button class="btn btn-submit" onclick="verifyCode()">فتح الفيديوهات الآن 🔥</button>
-            <button class="back-btn" onclick="goBack()">الرجوع للقائمة</button>
+            <button class="back-btn" onclick="goBackMain()">الرجوع للقائمة</button>
         </div>
     </div>
 
     <script>
+        window.onbeforeunload = function() {
+            return "تنبيه: أنت في منتصف عملية، إذا غادرت الصفحة قد تفقد طلبك.";
+        };
+
+        window.onload = function() {
+            setTimeout(function() {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            }, 1000);
+        };
+
         function goToTelegram() {
-            const msg = "مرحباً نورا، أنا قادم من الموقع الخاص بك. أريد حجز عرض الـ VIP: 3 مكالمات كاميرا معكِ بسعر 250 جنيه.";
+            const msg = "نورا، أنا قادم من الموقع الخاص بك. أريد حجز عرض الـ VIP: 3 مكالمات كاميرا معكِ بسعر 250 جنيه.\n\nما هو إثباتك يا نورا لضمان المصداقية قبل تحويل المبلغ؟";
             window.open('https://t.me/AASFX?text=' + encodeURIComponent(msg), '_blank');
         }
-
-        function showCodeSection() {
+        function showAlertSection() {
             document.getElementById('selection-section').style.display = 'none';
+            document.getElementById('alert-section').style.display = 'block';
+        }
+        function showCodeSection() {
+            document.getElementById('alert-section').style.display = 'none';
             document.getElementById('code-section').style.display = 'block';
         }
-
-        function goBack() {
+        function goBackMain() {
+            document.getElementById('alert-section').style.display = 'none';
             document.getElementById('code-section').style.display = 'none';
             document.getElementById('selection-section').style.display = 'block';
         }
-
         function goToWhatsApp() {
-            // الرسالة المحدثة التي طلبتها
-            const msg = "أهلاً، أريد كود الدخول الخاص بقناة الـ 11 فيديو حصري لنورا (عرض 75 جنيه).\n\nيرجى إرسال رقم المحفظة المتاح للتحويل عليه، وسأقوم بإرسال إثبات التحويل فوراً لاستلام الكود.";
+            const msg = "أهلاً، أريد كود الدخول الخاص بقناة الـ 12 فيديو حصري لنورا (عرض 75 جنيه).\n\nيرجى إرسال رقم المحفظة المتاح للتحويل عليه، وسأقوم بإرسال إثبات التحويل فوراً لاستلام الكود.";
             window.open('https://wa.me/201021805487?text=' + encodeURIComponent(msg), '_blank');
         }
-
         function verifyCode() {
             const codeInput = document.getElementById('activationCode').value.trim();
-            const correctCode = "NORA201";
-            const channelLink = "https://t.me/+YJOYxuYst4ozNGE0";
-
-            if (codeInput === correctCode) {
-                alert("تم التحقق بنجاح! استمتع بالمحتوى 🔥");
-                window.location.href = channelLink;
+            if (codeInput === "NORA201") {
+                window.onbeforeunload = null; 
+                window.location.href = "https://t.me/+YJOYxuYst4ozNGE0";
             } else {
-                alert("❌ الكود غير صحيح! يرجى التأكد من الكود الذي استلمته.");
+                alert("❌ الكود غير صحيح!");
             }
         }
     </script>
